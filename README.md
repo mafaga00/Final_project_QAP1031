@@ -43,7 +43,7 @@
 * [auth_page.py](https://github.com/mafaga00/Final_project_QAP1031/blob/master/pages/auth_page.py) - содержит специфичные методы и утилиты для страницы авторизации.
 ***
 **:bookmark_tabs: Директория tests содержит:**
-* [assest](https://github.com/mafaga00/Final_project_QAP1031/blob/master/tests/assests) - содержит CSS-стили для html-отчёта.
+* [assets](https://github.com/mafaga00/Final_project_QAP1031/blob/master/tests/assets) - содержит CSS-стили для html-отчёта.
 * [base_test.py](https://github.com/mafaga00/Final_project_QAP1031/blob/master/tests/base_test.py) - содержит базовый тестовый класс.
 * [test_auth.py](https://github.com/mafaga00/Final_project_QAP1031/blob/master/tests/test_auth.py) - содержит автотесты для страницы авторизации.
 ***
