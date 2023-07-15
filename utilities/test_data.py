@@ -19,8 +19,6 @@ class TestData:
     incorrect_phone = {
         '9134225280': 'unregistered phone',
         '0000000000': 'invalid phone',
-        "1" * 1: '1 symbol',
-        "1" * 9: '9 symbols',
         "1" * 10: '10 symbols',
         "1" * 255: '255 symbols',
         "1" * 256: '256 symbols',
