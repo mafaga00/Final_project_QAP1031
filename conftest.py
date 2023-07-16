@@ -32,7 +32,7 @@ def auth_page(request, initialize_driver):
 
 def pytest_configure(config):
     """Добавляем свой собственный маркер."""
-    config.addinivalue_line("markers", "skip_if_captcha: mark test as xfail if CAPTCHA is present on the page")
+    config.addinivalue_line("markers", "skip_if_captcha: mark test as skipped if CAPTCHA is present on the page")
 
 
 @pytest.fixture(autouse=True)

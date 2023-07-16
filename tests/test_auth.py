@@ -9,39 +9,45 @@ class TestAuth(BaseTest):
 
     def test_form_title_text(self, auth_page):
         """Проверяем название формы авторизации"""
-        assert auth_page.get_form_title_text() == "Авторизация"
+        form_title = auth_page.get_form_title_text()
+        assert form_title == "Авторизация"
 
     @pytest.mark.xfail(reason="Продуктовый слоган не соответствует ТЗ")
     def test_product_title_text(self, auth_page):
         """Проверяем название продуктового слогана"""
-        assert auth_page.get_product_title() == "Ростелеком ID"
+        product_title = auth_page.get_product_title()
+        assert product_title == "Ростелеком ID"
 
     @pytest.mark.xfail(reason="Название выбора аутентификации по номеру телефона не соответствует ТЗ")
     def test_authorization_tabs_text(self, auth_page):
         """Проверяем название табов выбора аутентификации"""
-        tabs_text = auth_page.get_tabs_list()
-        assert tabs_text == ['Номер', 'Почта', 'Логин', 'Лицевой счёт']
+        tabs_list = auth_page.get_tabs_list()
+        assert tabs_list == ['Номер', 'Почта', 'Логин', 'Лицевой счёт']
 
     @pytest.mark.xfail(reason="Название формы ввода номера телефона не соответствует ТЗ")
     def test_phone_input_title_text(self, auth_page):
         """Проверяем название формы ввода номера телефона"""
-        assert auth_page.get_input_title_text() == "Номер"
+        input_title = auth_page.get_input_title_text()
+        assert input_title == "Номер"
 
     @pytest.mark.xfail(reason="Название формы ввода почты не соответствует ТЗ")
     def test_email_input_title_text(self, auth_page):
         """Проверяем название формы ввода почты"""
         auth_page.click_tab_email()
-        assert auth_page.get_input_title_text() == "Почта"
+        input_title = auth_page.get_input_title_text()
+        assert input_title == "Почта"
 
     def test_login_input_title_text(self, auth_page):
         """Проверяем название формы ввода логина"""
         auth_page.click_tab_login()
-        assert auth_page.get_input_title_text() == "Логин"
+        input_title = auth_page.get_input_title_text()
+        assert input_title == "Логин"
 
     def test_ls_input_title_text(self, auth_page):
         """Проверяем название формы ввода номера лицевого счета"""
         auth_page.click_tab_ls()
-        assert auth_page.get_input_title_text() == "Лицевой счёт"
+        input_title = auth_page.get_input_title_text()
+        assert input_title == "Лицевой счёт"
 
     @pytest.mark.skip_if_captcha
     @pytest.mark.xfail(reason="Перенаправление клиента на страницу не соответствует ТЗ")
@@ -88,7 +94,7 @@ class TestAuth(BaseTest):
     @pytest.mark.skip_if_captcha
     @pytest.mark.parametrize("login", list(TestData.incorrect_login.keys()),
                              ids=list(TestData.incorrect_login.values()))
-    def test_invalid_email_authorization(self, login, auth_page):
+    def test_invalid_login_authorization(self, login, auth_page):
         """Авторизация с некорректными данными логина"""
         auth_page.click_tab_login()
         auth_page.log_into_application(login, TestData.VALID_PASSWORD)
@@ -98,7 +104,7 @@ class TestAuth(BaseTest):
     @pytest.mark.skip_if_captcha
     @pytest.mark.parametrize("ls", list(TestData.incorrect_ls.keys()),
                              ids=list(TestData.incorrect_ls.values()))
-    def test_invalid_email_authorization(self, ls, auth_page):
+    def test_invalid_ls_authorization(self, ls, auth_page):
         """Авторизация с некорректными данными лицевого счета"""
         auth_page.click_tab_ls()
         auth_page.log_into_application(ls, TestData.VALID_PASSWORD)
@@ -147,30 +153,39 @@ class TestAuth(BaseTest):
 
     def test_vk_authorization_link(self, auth_page):
         """Переход на страницу авторизации с помощью ВК"""
-        assert "https://id.vk.com/auth" in auth_page.get_vk_link()
+        vk_link = auth_page.get_vk_link()
+        assert "https://id.vk.com/auth" in vk_link
 
     def test_ok_authorization_link(self, auth_page):
         """Переход на страницу авторизации с помощью Одноклассников"""
-        assert "https://connect.ok.ru/dk" in auth_page.get_ok_link()
+        ok_link = auth_page.get_ok_link()
+        assert "https://connect.ok.ru/dk" in ok_link
 
     def test_mail_ru_authorization_link(self, auth_page):
         """Переход на страницу авторизации с помощью Маил ру"""
-        assert "https://connect.mail.ru/oauth/authorize" in auth_page.get_mail_ru_link()
+        mail_ru_link = auth_page.get_mail_ru_link()
+        assert "https://connect.mail.ru/oauth/authorize" in mail_ru_link
 
     @pytest.mark.xfail(reason="Перенаправление на страницу авторизации происходит после повторного нажатия")
     def test_ya_authorization_link(self, auth_page):
         """Переход на страницу авторизации с помощью Яндекс"""
-        assert "https://passport.yandex.ru/auth/" in auth_page.get_ya_link()
+        ya_link = auth_page.get_ya_link()
+        assert "https://passport.yandex.ru/auth/" in ya_link
 
     def test_registration_link(self, auth_page):
         """При нажатии на ссылку 'Зарегистрироваться' открывается форма регистрации"""
-        assert auth_page.click_registration_link() == "Регистрация"
+        auth_page.click_registration_link()
+        form_title = auth_page.get_form_title_text()
+        assert form_title == "Регистрация"
 
     def test_forgot_password_link(self, auth_page):
         """При нажатии на ссылку 'Забыл пароль' открывается форма восстановление пароля"""
-        assert auth_page.click_forgot_password_link() == "Восстановление пароля"
+        auth_page.click_forgot_password_link()
+        form_title = auth_page.get_form_title_text()
+        assert form_title == "Восстановление пароля"
 
     def test_agreement_link(self, auth_page):
         """При нажатии на ссылку 'пользовательского соглашения' открывается страница пользовательского соглашения"""
+        agreement_title = auth_page.get_agreement_title()
         assert "Публичная оферта о заключении Пользовательского соглашения на использование Сервиса «Ростелеком ID»" \
-               == auth_page.get_agreement_title()
+               == agreement_title

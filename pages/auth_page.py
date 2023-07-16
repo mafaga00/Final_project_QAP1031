@@ -61,13 +61,11 @@ class AuthPage(BasePage):
         """Метод клика по ссылке "Регистрация" на странице авторизации."""
         self.click(self.locator.REGISTRATION_LINK)
         self.driver.execute_script("window.stop();")
-        return self.get_form_title_text()
 
     def click_forgot_password_link(self):
         """Метод клика по ссылке "Забыл пароль" на странице авторизации."""
         self.click(self.locator.FORGOT_PASSWORD_LINK)
         self.driver.execute_script("window.stop();")
-        return self.get_form_title_text()
 
     def log_into_application(self, username, password):
         """Метод авторизации в приложении."""
