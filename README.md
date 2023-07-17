@@ -64,6 +64,7 @@
  
 * эквивалентное разбиение
 * анализ граничных значений
+* предугадывание ошибок
 * [диаграмма перехода состояния (.png)](https://drive.google.com/file/d/1wNGMKdT0kgPsPadnHex9vZ1TwRDAKOfT/view?usp=sharing)
 
 
@@ -73,7 +74,7 @@
 интсрумент [Selenium](https://www.selenium.dev/).
 * Специальный тестовый фреймворк [Pytest](https://docs.pytest.org/).
 * Плагин для pytest, который генерирует HTML-отчет по результатам тестов [pytest-html](https://pytest-html.readthedocs.io/en/latest/).
-* Опционально можете установить плагин [allure-pytest](https://pypi.org/project/allure-pytest/) и скачать для неё [командную строку](https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/) для генерации красивый html-отчётов.
+* Опционально можете установить плагин [allure-pytest](https://pypi.org/project/allure-pytest/) и скачать для неё [командную строку](https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/) для генерации красивых html-отчётов.
 * Для определения локаторов использовались 
 следующие инструменты: [DevTools](https://developer.chrome.com/docs/devto), [ChroPath](https://chrome.google.com/webstore/detail/chropath/ljngjbnaijcbncmcnjfhigebomdlkcjo).
 
